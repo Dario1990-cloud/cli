@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	cmdList "github.com/cli/cli/v2/pkg/cmd/agent-task/list"
+	cmdView "github.com/cli/cli/v2/pkg/cmd/agent-task/view"
 	"github.com/cli/cli/v2/pkg/cmdutil"
 	"github.com/cli/go-gh/v2/pkg/auth"
 	"github.com/spf13/cobra"
@@ -29,6 +30,10 @@ func NewCmdAgentTask(f *cmdutil.Factory) *cobra.Command {
 
 	// register subcommands
 	cmd.AddCommand(cmdList.NewCmdList(f, nil))
+
+	cmdutil.AddGroup(cmd, "Targeted commands",
+		cmdView.NewCmdView(f, nil),
+	)
 
 	return cmd
 }
